@@ -14,6 +14,10 @@
             <input type="number" id="width" name="width">
             <label for="height">Height</label>
             <input type="number" id="height" name="height">
+            <label for="color">Color</label>
+            <input type="color" id="color" name="color">
+            <label for="radius">Radius</label>
+            <input type="number" id="radius" name="radius">
             <button id="reset"> resest</button>
         </form>
         
@@ -25,30 +29,44 @@
 
 
     <script>
-        const widthInput = document.getElementById('width');
+         const widthInput = document.getElementById('width');
         const heightInput = document.getElementById('height');
+        const colorInput = document.getElementById('color');
+        const radiusInput = document.getElementById('radius');
         const cube = document.getElementById('cube');
         const resetButton = document.getElementById('reset');
 
-        function updateCubeSize() {
-            const width = widthInput.value || 10;
-            const height = heightInput.value || 10; 
+        function updateCubeProperties() {
+            const width = widthInput.value || 100;
+            const height = heightInput.value || 100;
+            const color = colorInput.value || '#0000FF';
+            const radius = radiusInput.value || 0; 
+
             cube.style.width = `${width}px`;
             cube.style.height = `${height}px`;
+            cube.style.backgroundColor = color;
+            cube.style.borderRadius = `${radius}px`;
         }
 
 
 
-            widthInput.addEventListener('input', updateCubeSize);
-            heightInput.addEventListener('input', updateCubeSize);
-
     
-            resetButton.addEventListener('click', () => {
-                widthInput.value = '';
-                heightInput.value = '';
-                cube.style.width = '100px';
-                cube.style.height = '100px';
-            });
+        widthInput.addEventListener('input', updateCubeProperties);
+        heightInput.addEventListener('input', updateCubeProperties);
+        colorInput.addEventListener('input', updateCubeProperties);
+        radiusInput.addEventListener('input', updateCubeProperties);
+
+      
+        resetButton.addEventListener('click', () => {
+            widthInput.value = '';
+            heightInput.value = '';
+            colorInput.value = 'blue'; 
+            radiusInput.value = '';
+            cube.style.width = '100px';
+            cube.style.height = '100px';
+            cube.style.backgroundColor = 'lightblue';
+            cube.style.borderRadius = '0'; 
+        });
 
     </script>
 </body>
